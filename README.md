@@ -1,7 +1,9 @@
 # DLR: Deep Learning Routine
 'DLR (Deep Learning Routines)' as a part of DPU (Deep Learning Processing
 Unit) is a collection of high-level synthesizable C/C++ routines for deep learning
-inference network.
+inference network.<br>
+All contents are provided as it is WITHOUT ANY WARRANTY and NO TECHNICAL SUPPORT will be provided for problems
+that might arise.
 
 ## Table of contents
 
@@ -9,9 +11,8 @@ inference network.
 
 1. [Overview](#overview)
    1. [Note](#note)
-   2. [License](#license)
-   3. [Prerequisites](#prerequisites)
-   4. [Conventions](#conventions)
+   2. [Prerequisites](#prerequisites)
+   3. [Conventions](#conventions)
 2. [Activation](#activation)
    1. [Hyperbolic tangent](#activation_tanh)
    2. [Leaky ReLU](#activation_leaky_relu)
@@ -32,7 +33,8 @@ inference network.
 9. [Project: LeNet-5](#project_lenet5)
 10. [Acknowledgment](#acknowledgment)
 11. [Authors and contributors](#authors_and_contributors)
-11. [Revision history](#revision_history)
+12. [License](#license)
+13. [Revision history](#revision_history)
 
 </details>
 
@@ -44,7 +46,7 @@ inference network.
 
 As shown in the picture below, DLR routines are verified in the context of C/C++, Python, PyTorch, and FPGA.
 
-| ![Overall framework](doc/images/dlr_framework.png) |
+| ![Overall framework](doc/images/dlr_framework-simple.png) |
 |:---:|
 | *Overall framework* |
 
@@ -68,23 +70,6 @@ It should be noted that the routines are not optimized to get a higher
 performance since the routines are for hardware implementation not for
 computation. In addition to this the routines are only for inference not for training.
 
-### License<a name="license"></a>
-DLR (Deep Learning Routines) and its associated materials are licensed with
-the 2-clause BSD license to make the program and library useful in open and
-closed source products independent of their licensing scheme.
-Each contributor holds copyright over their respective contribution.
-
-<details><summary>The 2-Clause BSD License</summary>
-Copyright 2020 Future Design Systems (http:://www.future-ds.com)
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</details>
 
 ### Prerequisites<a name="prerequisites"></a>
 This program requires followings.
@@ -215,7 +200,7 @@ Convolution2d( out_data    # out_channel x out_size x out_size
 </details>
 
 #### 1.4. PyTorch wrapper<a name="convolution2d_pytorch"></a>
-‘conv2d()’ PyTorch wrapper gets PyTorch tensor arguments for array and
+'conv2d()' PyTorch wrapper gets PyTorch tensor arguments for array and
 returns calculated result. It calls Python wrapper after converting PyTorch tensor
 to NumPy array.
 
@@ -250,12 +235,19 @@ conv2d( input     # in_minibatch x in_channel x in_size x in_size
 </details>
 
 ## Linear (Fully connected)<a name="linear"></a>
+Linear transfomation on the input data
+
+y = x * W <sup>T</sup> + b
 
 <details><summary>Click to expand this section</summary>
 
-| ![Linear](doc/images/linear.png) |
+| ![Linear](doc/images/linear1d.png) |
 |:---:|
-| *Linear* |
+| *Linear one-dimensional* |
+
+| ![LinearNd](doc/images/linearNd.png) |
+|:---:|
+| *Linear N-dimensional* |
 
 </details>
 
@@ -264,6 +256,11 @@ conv2d( input     # in_minibatch x in_channel x in_size x in_size
 <details><summary>Click to expand this section</summary>
 
 ### 1. Batch normalization<a name="normalization_batch_normalization"></a>
+
+| ![Batch normalization equation](doc/images/batchnorm-equation.png) |
+|:---:|
+| *Batch normaization equation* |
+| E[x]: mean, Var[x]: variance, &gamma;: scaling factor, &beta;: bias, &epsilon;: numerical stability |
 
 | ![Batch normalization](doc/images/batchnorm.png) |
 |:---:|
@@ -282,17 +279,55 @@ conv2d( input     # in_minibatch x in_channel x in_size x in_size
 </details>
 
 
-## Project: LeNet-5<a name="project_lenet5"></a>
+---
+## Project: LeNet-5 for MNIST<a name="project_lenet5"></a>
+LeNet-5 is a popular convolutional
+neural network architecture for handwritten and
+machine-printed character recognition.
+
+Details of this project can be found from 
+<a href="https://github.com/adki/DLR_Projects/LeNet-5" target="_blank">DLR Projects: LeNet-5</a>.
+
+| ![LeNet-5 project on FPGA](doc/images/lenet5-on-fpga.png) |
+|:---:|
+| *LeNet-5 project on FPGA* |
 
 <details><summary>Click to expand this project</summary>
 
+### 1. LeNet-5 network
+Following picture shows network structure and its data size.
+
 | ![LeNet-5 network](doc/images/lenet5-network.png) |
 |:---:|
-| *NeNet-5 network* |
+| *LeNet-5 network* |
+
+Following table shows a summary of the network and its parameters.
 
 | ![LeNet-5 network details](doc/images/lenet5-network-details.png) |
 |:---:|
-| *NeNet-5 network details* |
+| *LeNet-5 network details* |
+
+### 2. Design flow
+The picture below shows an overall design flow from model training to FPGA implementation.
+
+| ![LeNet-5 design flow](doc/images/lenet5-design-flow-all.png) |
+|:---:|
+| *LeNet-5 design flow* |
+
+</details>
+
+## Project: Tiny YOLO-V2 for VOC<a name="project_lenet5"></a>
+YOLO is a popular convolutional
+neural network architecture for object detection.
+
+Details of this project can be found from 
+<a href="https://github.com/adki/DLR_Projects/YoloV2Tiny" target="_blank">DLR Projects: Tiny YOLO-V2</a>.
+
+| ![Tiny YOLO-V2 project on FPGA](doc/images/yolov2tiny-on-fpga.png) |
+|:---:|
+| *Tiny YOLO-V2 project on FPGA* |
+
+<details><summary>Click to expand this project</summary>
 
 </details>
 
@@ -312,6 +347,24 @@ FPGA-based AI semiconductor design environment ” (Contract EA20202206).
 * **Seongwon Seo** <a href="http://www.future-ds.com" target="_blank">Future Design Systems</a>
 * **Kwangsub Jeon** - <a href="http://www.future-ds.com" target="_blank">Future Design Systems</a>
 * **Chae Eon Lim** - <a href="http://www.future-ds.com" target="_blank">Future Design Systems</a>
+
+### License<a name="license"></a>
+DLR (Deep Learning Routines) and its associated materials are licensed with
+the 2-clause BSD license to make the program and library useful in open and
+closed source products independent of their licensing scheme.
+Each contributor holds copyright over their respective contribution.
+
+<details><summary>The 2-Clause BSD License</summary>
+Copyright 2020-2021 Future Design Systems (http:://www.future-ds.com)
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</details>
 
 ### Revision history<a name="revision_history"></a>
 * 2020.11.12: Released

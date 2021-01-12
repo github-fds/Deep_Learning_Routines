@@ -1,0 +1,25 @@
+
+Step 0: set environment variable, DPU_HOME (by default current directory)
+
+       $ export DPU_HOME=`pwd`
+
+Step 1: building library
+
+       1. Go to 'src'
+       2. Run 'make'
+       3. Run 'make install'
+          - This will make 'lib' and 'include' at $DPU_HOME.
+
+Step 2: simplified test using Python
+
+       Make sure 'DPU_HOME' and 'PYTHONPATH' environment variables are set correctly.
+
+       1. Go to 'python'
+       2. Run 'make conv.2d' for convolution 2D
+
+Step 3: PyTorch testing
+
+       Make sure Anaconda is activated with PyTorch, e.g., $ set_conda
+
+       1. Go to 'verification/prj_convolution2d/python'
+       2. Run 'make'
