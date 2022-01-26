@@ -1,0 +1,14 @@
+
+2021.09.04: v1.4 namespace 'dlr' added.
+            - Python & PyTorch checked (batch_norm and deconvolution are not test fully)
+2020.11.12: Rename 'DPU' to 'DLR' (Deep Learning Routine)
+2020.11.12: "LeakyReLu" template addd for 'linear_1d.hpp'
+2020.11.12: v1.3 from v1.2
+           - '*pZ++ = B' bug-fixed ==> *pZ = B; pZ += 1;
+2020.11.12: v1.2 from v1.1
+2020.10.20: v1.1 from v1.0
+           - add 'channel' for activation functions.
+           - bug-fixed: kernel (weight) size in YoloV2Tiny.dpu.
+           - bug-fixed: pointer to multi-dimensional array at projects
+             DTYPE (*pt)[10][20][30] = array; // array[12][10][20][30]
+2020.10.01: C++ template version started by Ando Ki.

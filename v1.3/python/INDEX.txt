@@ -1,0 +1,17 @@
+
+__init__.py
+
+modules/                             Containing Python modules for DLR
+modules/__init__.py
+modules/dpu_common.py                Common part of Python wrapper for DLR
+
+modules/activation_wrapper.py        Python interface of 'ActivationReLu/LeakyReLu/Tanh/Sigmoid()' C routine
+modules/concat_2d_wrapper.py         Python interface of 'Concat2d()' C routine
+modules/convolution_2d_wrapper.py    Python interface of 'Convolution2dInt/Float/Double()' C routine.
+modules/linear_1d_wrapper.py         Python interface of 'Linear1dInt/Float/Double()' C routine.
+modules/linear_nd_wrapper.py         Python interface of 'LinearNdInt/Float/Double()' C routine.
+modules/pooling_2d_avg_wrapper.py    Python interface of 'Pooling2dMaxInt/Float/Double()' C routine.
+modules/pooling_2d_max_wrapper.py    Python interface of 'Pooling2dAvgInt/Float/Double()' C routine.
+
+torch/                     PyTorch wrapper
+torch/__init__.py

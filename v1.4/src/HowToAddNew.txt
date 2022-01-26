@@ -1,0 +1,4 @@
+
+1. prepare 'func_core.c'
+2. prepare 'func.h'
+3. prepare 'func.c'

@@ -1,0 +1,16 @@
+DIRS	= $(subst /,, $(dir $(wildcard */Makefile)))
+
+all:
+
+build:
+	make -C src install
+
+clean cleanup clobber cleanupall:
+	for D in $(DIRS); do\
+		if [ -f $$D/Makefile ] ; then \
+			echo "make -C $$D -s $@";\
+			make -C $$D -s $@;\
+		fi;\
+	done
+
+.PHONY: all clean cleanup clobber cleanupall

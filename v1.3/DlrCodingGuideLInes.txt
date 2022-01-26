@@ -1,0 +1,30 @@
+
+1. 4 spaces for indentation, not tab
+2. variables and functions start with a lower-case letter
+   and use carmel-case for the following words.
+   - char itemDelimiter;
+3. classes start with an upper-case letter
+   - class RgbImage { ... }
+4. acronyms are carmel-cased
+   - QXmlStreamReader
+5. members uses prefix
+   - member variable: mv_
+   - member function: mf_
+   - member widget: mw_
+6. local variables of a function start with a 't_' prefix.
+   - int t_index;
+7. user-defined slot functions starts with a 'mf_slot' prefix.
+   - void mf_slotIndexChanged(int index);
+8. use '_' for file name.
+   - 'main_window.{hpp,cpp}' for MainWindow class
+
+
+For verilog
+
+1. output port should come first for reference C
+
+2. Memory organization for HW layer
+   * input
+   * weight or kernels
+   * bias
+   * output

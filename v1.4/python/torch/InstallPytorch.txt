@@ -1,0 +1,31 @@
+# https://www.liquidweb.com/kb/how-to-install-pytorch-on-ubuntu/
+# PyTorch is a machine learning Python library, developed by the Facebook AI research group.
+
+[Install via PIP]=============================================
+
+# install the python3-venv package to make it possible to create
+# a virtual Python environment.
+$ sudo apt install -y python3-venv
+
+# create the virtual Python environment where we will install PyTorch
+$ python3 -m venv pytorch_venv
+
+# activate the virtual environment
+$ source pytorch-venv/bin/activate
+(pytorch-venv) $
+
+# install PyTorch
+(pytorch-venv) $ pip install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
+# test PyTorch
+(pytorch-venv) $ python3
+>> import torch
+>> print(torch.__version__)
+>> quit()
+
+# exit from virtual environment
+(pytorch-venv) $ deactivate
+$
+
+[install via anaconda]=============================================
+

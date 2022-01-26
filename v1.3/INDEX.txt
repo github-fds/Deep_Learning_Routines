@@ -1,0 +1,10 @@
+
+src/                C source
+python/             Python wrapper
+python/modules/     Python wrapper modules
+python/torch/       PyTorch wrapper
+verification/       verification project for each IP
+projects/           project using DPU routines
+
+include/            created when run 'installation' at 'src'
+lib/                created when run 'installation' at 'src'
