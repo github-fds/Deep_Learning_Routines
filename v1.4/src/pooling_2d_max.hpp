@@ -114,7 +114,7 @@ void Pooling2dMax
                 } else if (LeakyReLu) {
                     uint32_t ss = negative_slope;
                     float slope = *((float *)&ss); // make sure that it is 32-bit wide item
-                    *pZ = (max<(TYPE )0) ? ((float)max*slope) : max;
+                    *pZ = (max<(TYPE)0) ? (TYPE)((float)max*slope) : max;
                 } else {
                     *pZ = max;
                 }

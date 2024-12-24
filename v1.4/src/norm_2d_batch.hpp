@@ -1,13 +1,13 @@
 #pragma once
 /*
- * Copyright (c) 2019-2020 by Future Design Systems.
+ * Copyright (c) 2019-2023 by Future Design Systems.
  * All right reserved.
  * http://www.future-ds.com
  *
  * @file norm_2d_batch.hpp
  * @brief This file contains batch normalization
  * @author FDS
- * @date Aug. 31, 2020
+ * @date July 8, 2023.
  */
 #include <stdint.h>
 #include <math.h>
@@ -21,7 +21,7 @@
 namespace dlr { // deep learning routines
 
 template< class TYPE=float
-        , int LeakyReLu=0
+        , int ACTIVATION=0 // 0=no, 1=LeakyReLU, 2=ReLU
         , int negative_slope1000=100> // in order to deal with not supporing float for template
                                       // it is 1000 times of actual slope
 void Norm2dBatch
@@ -75,9 +75,13 @@ void Norm2dBatch
         TYPE var   = *(running_var+f);
         TYPE S     = (scale_size==0) ? (TYPE)1 : *(TYPE *)(scale+f);
         for (s=0; s<in_size; ++s) {
-             if (LeakyReLu) {
+             if (ACTIVATION==1) { // LeakReLU
                  TYPE value = (TYPE)((((*pX)-mean) / (sqrt(var+epsilon))) * S + B);
                  if (value<0) *pZ = value*(TYPE)(negative_slope1000/1000);
+                 else         *pZ = value;
+             } else if (ACTIVATION==2) { // ReLU
+                 TYPE value = (TYPE)((((*pX)-mean) / (sqrt(var+epsilon))) * S + B);
+                 if (value<0) *pZ = 0;
                  else         *pZ = value;
              } else {
                  *pZ = (TYPE)((((*pX)-mean) / (sqrt(var+epsilon))) * S + B);
@@ -92,6 +96,8 @@ void Norm2dBatch
 /*
  * Revision history
  *
+ * 2023.07.08: LeakyReLU --> ACTIVATION
+ *             ReLU added
  * 2020.09.20: parameter order of bias and bias_size changed.
  *             parameter 'rigor' and 'verbose' added.
  * 2020.08.31: Updated by participants of 2020 Summer Intern Program.

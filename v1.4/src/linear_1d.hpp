@@ -71,11 +71,11 @@ void Linear1d
             sum += (*pX)*(*pW);
         }
         if (ReLu) {
-            *pZ = ((sum+B)<=(TYPE)0) ? (TYPE)0 : (sum+B);
+            *pZ = ((sum+B)<=(TYPE)0) ? (TYPE)0 : (TYPE)(sum+B);
         } else if (LeakyReLu) {
              uint32_t ss = negative_slope;
              float slope = *((float *)&ss); // make sure that it is 32-bit wide item
-            *pZ = (sum<(TYPE )0) ? ((float)sum*slope) : sum;
+            *pZ = (sum<(TYPE)0) ? (TYPE)((float)sum*slope) : sum;
         } else {
             *pZ = sum+B;
         }

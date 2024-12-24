@@ -819,7 +819,7 @@ if __name__=='__main__':
             in_data     = GenDataPooling2d(data, rigor=rigor, verbose=verbose)
 
             sys.stdout.flush()
-            if func is 'max':
+            if func == 'max':
                 out_data  = F.max_pool2d( input=in_data
                                         , kernel_size=kernel_size
                                         , stride=stride
@@ -832,7 +832,7 @@ if __name__=='__main__':
                                        , ceil_mode=ceil_mode
                                        , rigor=rigor
                                        , verbose=verbose)
-            elif func is 'avg':
+            elif func == 'avg':
                 out_data  = F.avg_pool2d( input=in_data
                                         , kernel_size=kernel_size
                                         , stride=stride

@@ -1,4 +1,8 @@
 
+2023.07.08: v1.4.2
+            - Norm2dBarch<> ReLU added
+2022.06.08: v1.4.1
+            - Minor bug-fixed for python and cpp routines
 2021.09.04: v1.4 namespace 'dlr' added.
             - Python & PyTorch checked (batch_norm and deconvolution are not test fully)
 2020.11.12: Rename 'DPU' to 'DLR' (Deep Learning Routine)

@@ -20,12 +20,11 @@ Step 2: simplified test using Python
 
        1. Go to 'python'
        2. Run 'make conv.2d' for convolution 2D
-       2. Run 'make conv.2d' for convolution 2D
 
 Step 3: PyTorch testing
        Make sure Anaconda is activated with PyTorch, e.g., $ set_conda
 
-       $ cd torch
+       $ cd python/torch
        $ make conv.2d
        $ make all_test
 

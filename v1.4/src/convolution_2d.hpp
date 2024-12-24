@@ -90,7 +90,7 @@ void Convolution2d
     const uint16_t kernel_width=kernel_size;
 
     //#pragma GCC unroll f
-    #pragma GCC ivdep
+    //#pragma GCC ivdep
     for (f=0; f<out_channel; ++f) {
         TYPE B = (bias_size==(TYPE)0) ? (TYPE)0 : *(bias+f);
         TYPE *pZ = (TYPE*)(out_data+(f*out_height*out_width));
